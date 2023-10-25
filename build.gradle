@@ -45,7 +45,7 @@ publishing {
       groupId = "net.runelite"
       artifactId = "fernflower"
       version = "21062020"
-      from(components["java"])
+      from(components.java)
     }
   }
 }
