@@ -6,7 +6,8 @@ on:
       PACKAGE_VER:
         description: "Enter Version"
         required: false
-
+  push:
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
