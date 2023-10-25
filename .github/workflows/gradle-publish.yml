@@ -1,9 +1,11 @@
 name: Publish Package
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      PACKAGE_VER:
+        description: "Enter Version"
+        required: true
 
 jobs:
   build:
@@ -21,10 +23,4 @@ jobs:
       - name: Build and Publish Package
         run: |
           ./gradlew clean build
-          echo "//registry.npmjs.org/:_authToken=\${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
-          echo "always-auth=true" >> ~/.npmrc
-          echo "email=\${{ secrets.EMAIL }}" >> ~/.npmrc
-          echo "username=\${{ secrets.USERNAME }}" >> ~/.npmrc
-          
-          ./gradlew publish -PrepoUsername=\${{ secrets.REPO_USERNAME }} -PrepoPassword=\${{ secrets.REPO_PASSWORD }} -PpackageVersion=07082019
+          ./gradlew publish -PrepoUsername=\${{ secrets.REPO_USERNAME }} -PrepoPassword=\${{ secrets.REPO_PASSWORD }} -PpackageVersion=PACKAGE_VER
