@@ -26,4 +26,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-        run: gradlew publish
+        run: ./gradlew publish
