@@ -1,3 +1,4 @@
+plugins { id("elect86.magik") version "0.3.3" }
 group = 'net.runelite'
 // Just update this manually like the pro you are
 version = '21062020'
