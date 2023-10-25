@@ -1,4 +1,12 @@
-plugins { id("elect86.magik") version "0.3.3" }
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'elect86:magik:0.3.3'
+  }
+}
+
 group = 'net.runelite'
 // Just update this manually like the pro you are
 version = '21062020'
@@ -6,7 +14,7 @@ version = '21062020'
 // Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 apply plugin: 'java'
 apply plugin: 'maven-publish'
-apply plugin: 'elect86.magik' version '0.3.3'
+apply plugin: 'elect86.magik'
 
 compileJava {
   sourceCompatibility '1.8'
