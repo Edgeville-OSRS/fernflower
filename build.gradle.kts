@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
   id("java")
-  id("org.jetbrains.kotlin.jvm") version "1.5.31" // Add Kotlin plugin
   id("maven-publish")
-  id("elect86.magik") version "0.3.2"
+  id("elect86.magik") version "0.3.3"
+  id("com.gradle.plugin-publish") version "1.1.0"
 }
 
 group = "net.runelite"
