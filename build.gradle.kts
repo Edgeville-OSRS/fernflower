@@ -2,7 +2,6 @@ plugins {
   id("java")
   id("maven-publish")
   id("elect86.magik") version "0.3.3"
-  id("com.gradle.plugin-publish") version "1.1.0"
 }
 
 group = "net.runelite"
@@ -24,6 +23,7 @@ sourceSets {
 
 repositories {
   jcenter()
+  mavenCentral()
 }
 
 dependencies {
