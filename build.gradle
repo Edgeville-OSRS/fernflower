@@ -28,3 +28,21 @@ jar {
     attributes 'Main-Class': 'org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler'
   }
 }
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+    }
+  }
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/Edgeville-OSRS/fernflower")
+      credentials {
+        username = System.getenv("GITHUB_ACTOR")
+        password = System.getenv("GITHUB_TOKEN")
+      }
+    }
+  }
+}
