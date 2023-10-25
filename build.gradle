@@ -1,13 +1,13 @@
 buildscript {
   repositories {
-    jcenter()
-    mavenCentral()
+    maven {
+      url = uri("https://plugins.gradle.org/m2/")
+    }
   }
   dependencies {
-    classpath 'elect86:magik:0.3.3'
+    classpath "com.github.elect86:plugin:0.3.3"
   }
 }
-
 group = 'net.runelite'
 // Just update this manually like the pro you are
 version = '21062020'
