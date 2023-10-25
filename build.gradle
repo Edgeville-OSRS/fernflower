@@ -1,51 +1,30 @@
-plugins {
-  id 'java'
-  id 'maven-publish'
-}
-
 group = 'net.runelite'
+// Just update this manually like the pro you are
 version = '21062020'
 
-java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
+// Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+apply plugin: 'java'
+apply plugin: 'maven'
+
+compileJava {
+  sourceCompatibility '1.8'
+  targetCompatibility '1.8'
 }
 
 sourceSets {
-  main {
-    java {
-      srcDirs 'src'
-    }
-  }
-  test {
-    java {
-      srcDirs 'test'
-    }
-  }
+  main.java.srcDirs 'src'
+  test.java.srcDirs 'test'
 }
 
-repositories {
-  jcenter()
-}
-
+repositories { jcenter() }
 dependencies {
-  implementation 'junit:junit:4.12'
-  implementation 'org.assertj:assertj-core:3.12.2'
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.assertj:assertj-core:3.12.2'
 }
 
 jar {
-  archiveFileName = 'fernflower-' + project.version + '.jar'
+  archiveName 'fernflower-' + project.version + '.jar'
   manifest {
     attributes 'Main-Class': 'org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler'
-  }
-}
-
-publishing {
-  publications {
-    maven(MavenPublication) {
-      groupId = group
-      artifactId = 'fernflower'
-      version = project.version
-    }
   }
 }
