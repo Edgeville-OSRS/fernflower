@@ -5,7 +5,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.github.elect86:plugin:0.3.2"
+    classpath "com.github.elect86:plugin:0.1.1"
   }
 }
 group = 'net.runelite'
