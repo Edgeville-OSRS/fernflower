@@ -5,6 +5,7 @@ version = '21062020'
 // Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 apply plugin: 'java'
 apply plugin: 'maven-publish'
+apply plugin: 'elect86.magik' version '0.3.3'
 
 compileJava {
   sourceCompatibility '1.8'
@@ -29,23 +30,40 @@ jar {
   }
 }
 
+
 publishing {
-  repositories {
-    maven {
-      name = "GitHubPackages"
-      url = uri("https://maven.pkg.github.com/Edgeville-OSRS/fernflower")
-      credentials {
-        username = System.getenv("GITHUB_ACTOR")
-        password = System.getenv("GITHUB_TOKEN")
-      }
-    }
-  }
   publications {
-    gpr(MavenPublication) {
+    // you can pass a name to overwrite the default "maven"
+    // createGithubPublication("my-name")
+    createGithubPublication { this: MavenPublication
+      // if your project already defines `groupId`, `artifactId` and `version`, then you can skip these here
       groupId = "net.runelite"
       artifactId = "fernflower"
       version = "21062020"
-      from(components.java)
+
+      from(components["java"])
+    }.github {
+      // this adds another (snapshot) publication, copying from the previous one:
+      // - gav coordinates
+      // - component type (java, javaPlatform or war)
+      // - name, by default appended with the `Snapshot` postfix,
+      // eg: publishMavenPublicationToGithubRepository ->
+      // ->  publishMavenSnapshotPublicationToGithubRepository
+      addSnapshotPublication()
+    }
+  }
+  // don't use `repositories.github(..)`, it won't work
+  // the dsl construct is necessary to distinguish it from a consume-only repo
+  repositories {
+    // don't use github(domain: String), that's for fetching, it won't work for publishing
+    github {
+      // this is optional since `github` is the default value, but it determines
+      // the token name to fetch and the consequent publishing task name
+      // eg: publishMavenPublicationToGithubRepository
+      name = "github"
+
+      // this is mandatory instead: $owner/$repo on github domain
+      domain = "kotlin-graphics/mary" // aka https://github.com/kotlin-graphics/mary
     }
   }
 }
