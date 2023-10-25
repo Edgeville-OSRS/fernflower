@@ -29,22 +29,23 @@ jar {
     attributes 'Main-Class': 'org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler'
   }
 }
-
-
 publishing {
   publications {
-    create("github", MavenPublication::class) {
+    createGithubPublication { MavenPublication publication ->
       groupId = "net.runelite"
       artifactId = "fernflower"
       version = "21062020"
 
-      from(components["java"])
+      from components.java
+    }.github {
+      addSnapshotPublication()
     }
   }
+
   repositories {
     github {
-      name = "github"
-      domain = "Edgeville-OSRS/fernflower" // Replace with your GitHub repository owner and name
+      name 'github'
+      domain 'Edgeville-OSRS/fernflower'
     }
   }
 }
