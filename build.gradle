@@ -33,11 +33,16 @@ publishing {
   repositories {
     maven {
       name = "GitHubPackages"
-      url = "https://maven.pkg.github.com/Edgeville-OSRS/fernflower"
+      url = uri("https://maven.pkg.github.com/Edgeville-OSRS/fernflower")
       credentials {
         username = System.getenv("GITHUB_ACTOR")
         password = System.getenv("GITHUB_TOKEN")
       }
+    }
+  }
+  publications {
+    gpr(MavenPublication) {
+      from(components.java)
     }
   }
 }
